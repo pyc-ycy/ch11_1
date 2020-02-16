@@ -10,7 +10,7 @@ package com.pyc.ch11_1;
 import org.springframework.stereotype.Service;
 
 @Service
-public class statusService {
+public class StatusService {
     private String status;
 
     public void setStatus(String status) {

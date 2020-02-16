@@ -24,7 +24,7 @@ public class StatusEndPoint extends AbstractEndpoint<String> implements
 
     @Override
     public String invoke(){
-        statusService statusService = context.getBean(statusService.class);
+        StatusService statusService = context.getBean(StatusService.class);
 
         return "The Current Status  is :"+statusService.getStatus();
     }
