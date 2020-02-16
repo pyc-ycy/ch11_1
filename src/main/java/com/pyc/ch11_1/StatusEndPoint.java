@@ -7,5 +7,31 @@
 
 package com.pyc.ch11_1;
 
-public class StatusEndPoint {
+import org.springframework.beans.BeansException;
+import org.springframework.boot.actuate.endpoint.AbstractEndpoint;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+@ConfigurationProperties(prefix = "endpoints.status", ignoreUnknownFields = false)
+public class StatusEndPoint extends AbstractEndpoint<String> implements
+        ApplicationContextAware {
+    ApplicationContext context;
+
+    public StatusEndPoint(){
+        super("status");
+    }
+
+    @Override
+    public String invoke(){
+        statusService statusService = context.getBean(statusService.class);
+
+        return "The Current Status  is :"+statusService.getStatus();
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext arg0) throws BeansException {
+        this.context = arg0;
+
+    }
 }
